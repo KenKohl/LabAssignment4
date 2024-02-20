@@ -27,27 +27,32 @@ public class Multiple7 {
         int second = scnr.nextInt();
 
         //Passes the variables first and second along with 0 for the initial sum to the multipleOf method.
-        multipleOf(first, second, 0);
+        System.out.println(multipleOf(first, second, 0));
 
     }
 
-    public static void multipleOf(int first, int second, int sum){
-        //if condition that if the first variable + 1 modulo 7 is equal to 0 and variable first is less than
-        //variable second than add 1 to int sum and pass first + 1, second, and sum to multipleOf method.
-        if((first + 1) % 7 == 0 && first < second){
+    public static int multipleOf(int first, int second, int sum){
+
+        //if condition that checks if first is bigger than second it will return -1
+        if(first > second){
+            return -1;
+        }
+
+        //if condition that checks if the first variable + 1 modulo 7 is equal to 0 and variable first + 1 is
+        // less than variable second than it adds 1 to int sum and returns the call to method multipleOf passing
+        // first + 1, second, and sum variables.
+        if((first + 1) % 7 == 0 && (first + 1) < second){
             sum++;
-            multipleOf(first + 1, second,sum);
+            return multipleOf(first + 1, second,sum);
         }
-        //if condition that if first is greater than or equal to second, print the sum of numbers that were
-        //divisible by 7 within the range given
-        else if(first >= second){
-            System.out.println("The sum of all numbers divisible by 7 in the range of " +
-                    "numbers entered is " + sum);
+        //if condition that checks if first + 1 is less than the value of second, it returns a call to method
+        // multipleOf passing first + 1, second, and sum variables.
+        else if((first + 1) < second){
+            return  multipleOf(first + 1, second,sum);
         }
-        //Else condition that when other conditions fail passes first+1, second, and sum variables to multipleOf method.
-        else{
-            multipleOf(first + 1, second,sum);
-        }
+
+        //Returns the variable sum
+        return sum;
 
     }
 }
